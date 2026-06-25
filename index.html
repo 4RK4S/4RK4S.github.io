@@ -3,41 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>4RK4S</title>
   <meta name="description" content="4RK4S - Python Developer, Discord Bots, Automation, Web Tools" />
+
   <style>
     :root {
-      --bg: #140325;
-      --bg2: #1b0630;
-      --panel: rgba(27, 8, 45, 0.92);
-      --panel-2: rgba(19, 5, 31, 0.95);
-      --border: rgba(180, 95, 255, 0.45);
-      --text: #f3dcff;
-      --muted: #c79df5;
-      --primary: #b45fff;
-      --primary-2: #7f2cff;
-      --glow: rgba(180, 95, 255, 0.4);
-      --glow-strong: rgba(180, 95, 255, 0.7);
-      --button-bg: rgba(22, 5, 35, 0.96);
-      --button-hover: rgba(40, 10, 61, 0.98);
-      --shadow: 0 0 15px rgba(180, 95, 255, 0.18),
-                0 0 30px rgba(180, 95, 255, 0.10);
+      --bg: #12021f;
+      --bg-dark: #08010f;
+      --panel: rgba(23, 4, 38, 0.92);
+      --panel-dark: rgba(12, 2, 22, 0.96);
+      --border: rgba(190, 112, 255, 0.45);
+      --border-strong: rgba(207, 143, 255, 0.75);
+      --text: #f4e4ff;
+      --muted: #cfa7ff;
+      --primary: #b56cff;
+      --primary-2: #7c3aed;
+      --glow: rgba(181, 108, 255, 0.35);
+      --green: #22c55e;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
-      padding: 0;
       min-height: 100%;
       font-family: Consolas, "Courier New", monospace;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(120, 40, 210, 0.22), transparent 35%),
-        radial-gradient(circle at bottom, rgba(90, 20, 160, 0.18), transparent 35%),
-        linear-gradient(180deg, var(--bg) 0%, #0e0218 100%);
+        radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.24), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(181, 108, 255, 0.14), transparent 35%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-dark) 100%);
       overflow-x: hidden;
     }
 
@@ -47,9 +46,9 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
       background-size: 100% 4px;
-      opacity: 0.15;
+      opacity: 0.16;
       mix-blend-mode: screen;
     }
 
@@ -59,33 +58,33 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.07) 0 1px, transparent 2px),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0 1px, transparent 2px),
-        radial-gradient(circle at 60% 75%, rgba(255,255,255,0.05) 0 1px, transparent 2px),
-        radial-gradient(circle at 35% 80%, rgba(255,255,255,0.05) 0 1px, transparent 2px);
-      opacity: 0.45;
+        radial-gradient(circle at 18% 32%, rgba(255,255,255,0.08) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 18%, rgba(255,255,255,0.06) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 72%, rgba(255,255,255,0.05) 0 1px, transparent 2px),
+        radial-gradient(circle at 35% 83%, rgba(255,255,255,0.05) 0 1px, transparent 2px);
+      opacity: 0.5;
     }
 
     .page {
       min-height: 100vh;
-      padding: 38px 20px;
+      padding: 36px 20px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .terminal {
+      position: relative;
       width: 100%;
       max-width: 1180px;
       min-height: 760px;
-      position: relative;
-      border: 2px solid rgba(187, 114, 255, 0.42);
-      box-shadow:
-        0 0 0 1px rgba(210, 140, 255, 0.08) inset,
-        0 0 30px rgba(165, 70, 255, 0.16);
+      border: 2px solid rgba(194, 119, 255, 0.42);
       background:
-        linear-gradient(180deg, rgba(47, 11, 77, 0.70), rgba(24, 5, 40, 0.80)),
-        rgba(20, 4, 32, 0.78);
+        linear-gradient(180deg, rgba(48, 10, 76, 0.72), rgba(20, 4, 34, 0.84)),
+        rgba(18, 3, 30, 0.82);
+      box-shadow:
+        0 0 0 1px rgba(217, 166, 255, 0.08) inset,
+        0 0 34px rgba(181, 108, 255, 0.18);
       overflow: hidden;
     }
 
@@ -93,84 +92,84 @@
       height: 44px;
       display: flex;
       align-items: center;
-      gap: 10px;
       padding: 0 16px;
-      border-bottom: 1px solid rgba(200, 120, 255, 0.25);
-      background: rgba(8, 2, 14, 0.92);
+      border-bottom: 1px solid rgba(214, 151, 255, 0.24);
+      background: rgba(7, 1, 13, 0.92);
     }
 
     .dots {
       display: flex;
       gap: 8px;
-      align-items: center;
     }
 
     .dot {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #8c45ea;
-      box-shadow: 0 0 8px rgba(180, 95, 255, 0.55);
+      background: #8b5cf6;
+      box-shadow: 0 0 10px rgba(181, 108, 255, 0.65);
     }
 
     .terminal-title {
-      margin-left: 12px;
+      margin-left: 14px;
+      color: #d8b4fe;
       font-size: 14px;
-      color: #d7afff;
-      letter-spacing: 0.4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      letter-spacing: 0.5px;
     }
 
     .terminal-body {
       position: relative;
       min-height: calc(760px - 44px);
-      padding: 70px 24px 60px;
+      padding: 68px 24px 58px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      z-index: 2;
     }
 
-    .top-command {
+    .command-box {
       width: min(100%, 760px);
-      background: rgba(27, 4, 45, 0.94);
-      border: 1px solid rgba(184, 108, 255, 0.35);
-      box-shadow: var(--shadow);
       padding: 18px 22px;
       margin-bottom: 42px;
+      background: rgba(23, 3, 40, 0.94);
+      border: 1px solid rgba(197, 125, 255, 0.36);
+      box-shadow:
+        0 0 18px rgba(181, 108, 255, 0.18),
+        0 0 36px rgba(181, 108, 255, 0.08);
     }
 
     .prompt-small {
-      font-size: 14px;
-      color: var(--muted);
       margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .prompt-line {
-      font-size: clamp(18px, 2.2vw, 26px);
+      min-height: 35px;
       color: var(--primary);
+      font-size: clamp(18px, 2.2vw, 26px);
       word-break: break-word;
-      min-height: 34px;
     }
 
     .cursor {
       display: inline-block;
       width: 10px;
       height: 1.1em;
-      background: rgba(187, 114, 255, 0.85);
-      vertical-align: middle;
       margin-left: 6px;
-      box-shadow: 0 0 10px rgba(187, 114, 255, 0.55);
+      vertical-align: middle;
+      background: rgba(197, 125, 255, 0.9);
+      box-shadow: 0 0 12px rgba(197, 125, 255, 0.7);
       animation: blink 1s steps(1) infinite;
     }
 
     @keyframes blink {
-      50% { opacity: 0; }
+      50% {
+        opacity: 0;
+      }
     }
 
-    .center-wrap {
+    .content {
       width: min(100%, 760px);
     }
 
@@ -180,116 +179,100 @@
     }
 
     .brand h1 {
-      margin: 0 0 12px;
-      font-size: clamp(52px, 10vw, 90px);
+      margin: 0 0 14px;
+      color: rgba(224, 177, 255, 0.18);
+      text-shadow: 0 0 14px rgba(181, 108, 255, 0.08);
+      font-size: clamp(54px, 10vw, 94px);
       line-height: 1;
-      color: rgba(214, 153, 255, 0.16);
-      text-shadow: 0 0 12px rgba(180, 95, 255, 0.08);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       user-select: none;
     }
 
     .brand p {
       margin: 0;
-      color: #e2c7ff;
+      color: #ead7ff;
       font-size: clamp(14px, 2vw, 18px);
+      line-height: 1.6;
     }
 
-    .link-grid {
+    .section-label {
+      margin: 28px 0 12px;
+      color: #d8b4fe;
+      font-size: 13px;
+    }
+
+    .menu {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin-top: 30px;
     }
 
-    .link-card {
+    .menu-link {
+      min-height: 62px;
+      padding: 16px 18px;
       display: flex;
       align-items: center;
       gap: 12px;
-      width: 100%;
-      text-decoration: none;
       color: var(--text);
-      background: var(--button-bg);
-      border: 1px solid rgba(194, 120, 255, 0.35);
-      padding: 16px 18px;
-      min-height: 62px;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
+      text-decoration: none;
+      background: var(--panel-dark);
+      border: 1px solid rgba(201, 133, 255, 0.36);
       transition: 0.18s ease;
     }
 
-    .link-card:hover {
+    .menu-link:hover {
       transform: translateY(-2px);
-      background: var(--button-hover);
-      border-color: rgba(214, 145, 255, 0.65);
-      box-shadow: 0 0 15px rgba(180, 95, 255, 0.22);
+      border-color: var(--border-strong);
+      background: rgba(31, 7, 50, 0.98);
+      box-shadow: 0 0 18px rgba(181, 108, 255, 0.22);
     }
 
-    .link-card.full {
+    .menu-link.full {
       grid-column: 1 / -1;
     }
 
     .icon {
-      width: 22px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      color: #daabff;
+      width: 24px;
+      color: #deb7ff;
+      font-size: 18px;
+      text-align: center;
       flex-shrink: 0;
     }
 
     .label {
       font-size: 18px;
-      color: #efdcff;
     }
 
-    .subtitle-line {
-      margin-top: 26px;
-      color: #d7b3f8;
+    .hint {
+      margin-top: 22px;
+      padding: 14px 16px;
+      color: #cfa7ff;
+      background: rgba(13, 2, 24, 0.68);
+      border: 1px solid rgba(201, 133, 255, 0.22);
       font-size: 13px;
-      text-align: left;
+      line-height: 1.6;
     }
 
-    .footer-command {
-      margin-top: 20px;
-      width: min(100%, 760px);
-    }
-
-    .back-link {
-      display: block;
-      text-decoration: none;
-      color: #dcb7ff;
-      background: rgba(16, 2, 28, 0.96);
-      border: 1px solid rgba(186, 107, 255, 0.35);
-      padding: 14px 18px;
-      box-shadow: var(--shadow);
-      transition: 0.18s ease;
-    }
-
-    .back-link:hover {
-      background: rgba(28, 6, 44, 0.98);
-      border-color: rgba(215, 149, 255, 0.55);
-    }
-
-    .scan-corners::before,
-    .scan-corners::after,
-    .scan-corners .corner-bl,
-    .scan-corners .corner-br {
-      content: "";
+    .corner-tl,
+    .corner-tr,
+    .corner-bl,
+    .corner-br {
       position: absolute;
-      width: 26px;
-      height: 26px;
-      border-color: #c87cff;
-      opacity: 0.75;
+      width: 28px;
+      height: 28px;
+      border-color: #c084fc;
+      opacity: 0.76;
+      z-index: 3;
     }
 
-    .scan-corners::before {
+    .corner-tl {
       top: 22px;
       left: 22px;
       border-top: 3px solid;
       border-left: 3px solid;
     }
 
-    .scan-corners::after {
+    .corner-tr {
       top: 22px;
       right: 22px;
       border-top: 3px solid;
@@ -320,24 +303,12 @@
         padding: 58px 18px 50px;
       }
 
-      .link-grid {
+      .menu {
         grid-template-columns: 1fr;
       }
 
-      .link-card.full {
+      .menu-link.full {
         grid-column: auto;
-      }
-
-      .brand h1 {
-        font-size: clamp(42px, 14vw, 66px);
-      }
-
-      .label {
-        font-size: 16px;
-      }
-
-      .prompt-line {
-        font-size: 18px;
       }
     }
 
@@ -354,68 +325,73 @@
         font-size: 12px;
       }
 
-      .top-command,
-      .footer-command {
-        width: 100%;
+      .brand h1 {
+        font-size: 48px;
       }
 
-      .brand p {
-        line-height: 1.6;
+      .label {
+        font-size: 16px;
+      }
+
+      .prompt-line {
+        font-size: 18px;
       }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <section class="terminal scan-corners">
-      <div class="corner-bl"></div>
-      <div class="corner-br"></div>
+    <section class="terminal">
+      <span class="corner-tl"></span>
+      <span class="corner-tr"></span>
+      <span class="corner-bl"></span>
+      <span class="corner-br"></span>
 
-      <div class="terminal-header">
+      <header class="terminal-header">
         <div class="dots">
           <span class="dot"></span>
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
-        <div class="terminal-title">4RK4S ~ terminal</div>
-      </div>
+        <div class="terminal-title">root@4rk4s ~ terminal</div>
+      </header>
 
       <div class="terminal-body">
-        <div class="top-command">
+        <div class="command-box">
           <div class="prompt-small">arkas@terminal:~$</div>
           <div class="prompt-line" id="typing-line"></div>
         </div>
 
-        <div class="center-wrap">
-          <div class="brand">
+        <div class="content">
+          <section class="brand">
             <h1>4RK4S</h1>
             <p>Python Developer • Discord Bots • Automation • Web Tools</p>
-          </div>
+          </section>
 
-          <div class="subtitle-line">$ ls -la /social/*</div>
+          <div class="section-label">$ ls -la /links/*</div>
 
-          <div class="link-grid">
-            <a class="link-card" href="https://github.com/4RK4S" target="_blank" rel="noopener noreferrer">
+          <nav class="menu">
+            <a class="menu-link" href="https://github.com/4RK4S" target="_blank" rel="noopener noreferrer">
               <span class="icon">⌘</span>
               <span class="label">./github.sh</span>
             </a>
 
-            <a class="link-card" href="https://discord.com/users/423522296389697548" target="_blank" rel="noopener noreferrer">
+            <a class="menu-link" href="/discord">
               <span class="icon">✦</span>
               <span class="label">./discord.sh</span>
             </a>
 
-            <a class="link-card full" href="mailto:arkas1999@gmail.com">
+            <a class="menu-link full" href="/mail">
               <span class="icon">✉</span>
               <span class="label">./mail.sh</span>
             </a>
-          </div>
-        </div>
+          </nav>
 
-        <div class="footer-command">
-          <a class="back-link" href="https://github.com/4RK4S" target="_blank" rel="noopener noreferrer">
-            &lt; cd ..
-          </a>
+          <div class="hint">
+            $ cat ./about.txt<br />
+            Building Python tools, Discord bots, automation scripts and web utilities.
+          </div>
         </div>
       </div>
     </section>
@@ -426,6 +402,7 @@
     const line = document.getElementById("typing-line");
 
     let index = 0;
+
     function typeText() {
       if (index < text.length) {
         line.textContent += text.charAt(index);

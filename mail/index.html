@@ -1,11 +1,287 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=mailto:arkas1999@gmail.com">
-  <title>Redirecting...</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>4RK4S - Mail</title>
+
+  <style>
+    :root {
+      --bg: #12021f;
+      --bg-dark: #08010f;
+      --panel: rgba(23, 4, 38, 0.94);
+      --panel-dark: rgba(12, 2, 22, 0.96);
+      --border: rgba(190, 112, 255, 0.45);
+      --border-strong: rgba(207, 143, 255, 0.75);
+      --text: #f4e4ff;
+      --muted: #cfa7ff;
+      --primary: #b56cff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Consolas, "Courier New", monospace;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.24), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(181, 108, 255, 0.14), transparent 35%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-dark) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 100% 4px;
+      opacity: 0.16;
+      mix-blend-mode: screen;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 36px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .terminal {
+      position: relative;
+      width: 100%;
+      max-width: 1180px;
+      min-height: 760px;
+      border: 2px solid rgba(194, 119, 255, 0.42);
+      background:
+        linear-gradient(180deg, rgba(48, 10, 76, 0.72), rgba(20, 4, 34, 0.84)),
+        rgba(18, 3, 30, 0.82);
+      box-shadow:
+        0 0 0 1px rgba(217, 166, 255, 0.08) inset,
+        0 0 34px rgba(181, 108, 255, 0.18);
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(214, 151, 255, 0.24);
+      background: rgba(7, 1, 13, 0.92);
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      box-shadow: 0 0 10px rgba(181, 108, 255, 0.65);
+    }
+
+    .terminal-title {
+      margin-left: 14px;
+      color: #d8b4fe;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .terminal-body {
+      min-height: calc(760px - 44px);
+      padding: 70px 24px 58px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content {
+      width: min(100%, 760px);
+    }
+
+    .command-box,
+    .info-box,
+    .back-box {
+      background: rgba(23, 3, 40, 0.94);
+      border: 1px solid rgba(197, 125, 255, 0.36);
+      box-shadow:
+        0 0 18px rgba(181, 108, 255, 0.18),
+        0 0 36px rgba(181, 108, 255, 0.08);
+    }
+
+    .command-box {
+      padding: 18px 22px;
+      margin-bottom: 34px;
+    }
+
+    .prompt-small {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .prompt-line {
+      color: var(--primary);
+      font-size: clamp(18px, 2.2vw, 26px);
+      word-break: break-word;
+    }
+
+    .info-box {
+      padding: 26px 28px;
+    }
+
+    .comment {
+      color: #d8b4fe;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .value {
+      margin: 0 0 24px;
+      color: #e9d5ff;
+      font-size: clamp(22px, 3vw, 32px);
+      word-break: break-word;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    button,
+    a.action {
+      min-height: 58px;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 16px;
+      cursor: pointer;
+      background: var(--panel-dark);
+      border: 1px solid rgba(201, 133, 255, 0.36);
+      transition: 0.18s ease;
+    }
+
+    button:hover,
+    a.action:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-strong);
+      background: rgba(31, 7, 50, 0.98);
+      box-shadow: 0 0 18px rgba(181, 108, 255, 0.22);
+    }
+
+    .status {
+      min-height: 22px;
+      margin-top: 16px;
+      color: #86efac;
+      font-size: 14px;
+    }
+
+    .back-box {
+      display: block;
+      margin-top: 28px;
+      padding: 15px 18px;
+      color: #dcb7ff;
+      text-decoration: none;
+      transition: 0.18s ease;
+    }
+
+    .back-box:hover {
+      border-color: var(--border-strong);
+      background: rgba(31, 7, 50, 0.98);
+    }
+
+    @media (max-width: 760px) {
+      .terminal {
+        min-height: auto;
+      }
+
+      .terminal-body {
+        min-height: auto;
+        padding: 58px 18px 50px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <p>Opening mail...</p>
+  <main class="page">
+    <section class="terminal">
+      <header class="terminal-header">
+        <div class="dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="terminal-title">4RK4S / mail</div>
+      </header>
+
+      <div class="terminal-body">
+        <div class="content">
+          <div class="command-box">
+            <div class="prompt-small">arkas@terminal:~$</div>
+            <div class="prompt-line">cat /contact/email.txt<span class="cursor"></span></div>
+          </div>
+
+          <div class="info-box">
+            <div class="comment">// contact address</div>
+            <h1 class="value">arkas1999@gmail.com</h1>
+
+            <div class="actions">
+              <button type="button" onclick="copyMail()">
+                <span>⧉</span>
+                <span>./copy-address.sh</span>
+              </button>
+
+              <a class="action" href="mailto:arkas1999@gmail.com">
+                <span>✉</span>
+                <span>./open-mail-client.sh</span>
+              </a>
+            </div>
+
+            <div class="status" id="status"></div>
+          </div>
+
+          <a class="back-box" href="/">
+            &lt; cd ..
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function copyMail() {
+      const status = document.getElementById("status");
+      const value = "arkas1999@gmail.com";
+
+      try {
+        await navigator.clipboard.writeText(value);
+        status.textContent = "Copied email address.";
+      } catch {
+        status.textContent = "Could not copy automatically. Email: " + value;
+      }
+    }
+  </script>
 </body>
 </html>
